@@ -1,19 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: backend
-  name: backend
+  name: war-backend-svc
+  namespace: war-ns
 spec:
+  type: ClusterIP
   ports:
-    - name: "8080"
+    - protocol: TCP
       port: 8080
       targetPort: 8080
   selector:
-    io.kompose.service: backend
+    app: war-backend-dp
 status:
   loadBalancer: {}

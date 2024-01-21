@@ -1,34 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: frontend
-  name: frontend
+  name: war-frontend-dp
+  namespace: war-ns
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: frontend
+      app: war-frontend-dp
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
-        io.kompose.network/frontend: "true"
-        io.kompose.service: frontend
+        app: war-frontend-dp
     spec:
       containers:
         - image: jackpoleaxe/kubiwar_frontend
-          name: frontend
+          name: war-frontend-dp
           ports:
             - containerPort: 80
-          resources: {}
       restartPolicy: Always
-status: {}

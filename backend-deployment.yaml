@@ -1,44 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: backend
-  name: backend
+  name: war-backend-dp
+  namespace: war-ns
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: backend
+      app: war-backend-dp
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
-        io.kompose.network/backend: "true"
-        io.kompose.network/frontend: "true"
-        io.kompose.service: backend
+        app: war-backend-dp
     spec:
       containers:
         - env:
             - name: SPRING_DATASOURCE_PASSWORD
               value: pass
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:mysql://db:3306/war_resources
+              value: jdbc:mysql://war-db-svc:3306/war_resources
             - name: SPRING_DATASOURCE_USERNAME
               value: warlord
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: update
           image: jackpoleaxe/kubiwar_backend
-          name: backend
+          name: war-backend-dp
           ports:
             - containerPort: 8080
-          resources: {}
       restartPolicy: Always
-status: {}

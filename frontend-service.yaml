@@ -1,21 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: frontend
-  name: frontend
+  name: war-frontend-svc
+  namespace: war-ns
 spec:
-  ports:
-    - name: "3000"
-      port: 3000
-      targetPort: 80
-      nodePort: 30007
+  type: ClusterIP
   selector:
-    io.kompose.service: frontend
-  type: NodePort
-status:
-  loadBalancer: {}
+    app: war-frontend-dp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
