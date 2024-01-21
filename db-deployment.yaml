@@ -26,13 +26,14 @@ spec:
             - name: MYSQL_USER
               value: warlord
           image: mysql
-          livenessProbe:
-            exec:
-              command:
-                - mysql war_resources --user=warlord --password='pass' --silent --execute "SELECT 1;"
-            failureThreshold: 5
-            periodSeconds: 30
-            timeoutSeconds: 10
           name: war-db-dp
           ports:
             - containerPort: 3306
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: war-db-volume
+      restartPolicy: Always
+      volumes:
+        - name: war-db-volume
+          persistentVolumeClaim:
+            claimName: war-db-volume
