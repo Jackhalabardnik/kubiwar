@@ -1,0 +1,30 @@
+Skład grupy: Jacek Wójcik, 93065
+
+Projekt obejmuje:
+1. frontend, backend i bazę danych jako osobne wdrożenia
+2. odwrotny serwis proxy do obsługi żądań do frontendu i backendu
+3. bazę danych mysql z podpiętym wolumenem danych
+4. umieszczenie obrazów frontendu i backendu na docker hubie
+
+Instrukcja:
+1. Należy upewnić się że microk8s ma włączone następujące moduły: dns, storage, ingress, dashboard, metrics-server
+2. Należy dodać pliki w kolejności:
+
+Plik 1 - "namespace-dev.yaml"
+Plik 2 - "db-volume.yaml"
+Plik 3 - "db-deployment.yaml"
+Plik 4 - "db-service.yaml"
+Plik 5 - "backend-deployment.yaml"
+Plik 6 - "backend-service.yaml"
+Plik 7 - "frontend-deployment.yaml"
+Plik 8 - "frontend-service.yaml"
+Plik 9 - "ingress.yaml"
+Plik 10 - "scaling-frontend.yaml"
+Plik 10 - "scaling-backend.yaml"
+
+
+3. Aplikacja powinna działać na adresie 127.0.0.1:80
+
+Z wyrazami szacunku,
+Jacek Wójcik
+
