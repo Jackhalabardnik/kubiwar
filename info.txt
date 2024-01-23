@@ -4,7 +4,8 @@ Projekt obejmuje:
 1. frontend, backend i bazę danych jako osobne wdrożenia
 2. odwrotny serwis proxy do obsługi żądań do frontendu i backendu
 3. bazę danych mysql z podpiętym wolumenem danych
-4. umieszczenie obrazów frontendu i backendu na docker hubie
+4. automatyczne skalowanie względem obciążenia
+5. umieszczenie obrazów frontendu i backendu na docker hubie
 
 Instrukcja:
 1. Należy upewnić się że microk8s ma włączone następujące moduły: dns, storage, ingress, dashboard, metrics-server
